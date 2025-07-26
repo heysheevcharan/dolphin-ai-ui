@@ -1,12 +1,23 @@
 export type Agent = "dolphin" | "elephant" | "cheetah"
 
-export interface Message {
+export type MessageType = "user" | "agent" | "text" | "ask_question" | "image_urls"
+
+export interface BaseMessage {
   id: string
-  type: "user" | "agent"
-  agent?: Agent
-  content: string
+  type: MessageType
   timestamp: Date
+}
+
+export interface UserMessage extends BaseMessage {
+  type: "user"
+  content: string
   data?: any
+}
+
+export interface AgentMessage extends BaseMessage {
+  type: "agent"
+  agent: Agent
+  content: string
   quickReplies?: string[]
   multiSelect?: string[]
   slider?: {
@@ -25,6 +36,32 @@ export interface Message {
   calculator?: "sip" | "emi" | "compound"
   showProgress?: boolean
 }
+
+export interface TextMessage extends BaseMessage {
+  type: "text"
+  role: "user" | "ai"
+  content: string
+  additional_kwargs?: any
+  response_metadata?: any
+}
+
+export interface AskQuestionMessage extends BaseMessage {
+  type: "ask_question"
+  role: "ai"
+  content: string
+  options: string[]
+  question: string
+}
+
+export interface ImageUrlsMessage extends BaseMessage {
+  type: "image_urls"
+  role: "user" | "ai"
+  content: string[]
+  additional_kwargs?: any
+  response_metadata?: any
+}
+
+export type Message = UserMessage | AgentMessage | TextMessage | AskQuestionMessage | ImageUrlsMessage
 
 export interface Badge {
   id: string

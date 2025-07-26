@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 
 interface QuickReplyChipsProps {
@@ -8,10 +8,26 @@ interface QuickReplyChipsProps {
   multiSelect?: boolean
   onSelect?: (option: string) => void
   onMultiSelect?: (options: string[]) => void
+  selectedOption?: string | null
 }
 
-export function QuickReplyChips({ options, multiSelect, onSelect, onMultiSelect }: QuickReplyChipsProps) {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+export function QuickReplyChips({ 
+  options, 
+  multiSelect, 
+  onSelect, 
+  onMultiSelect,
+  selectedOption 
+}: QuickReplyChipsProps) {
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(
+    selectedOption ? [selectedOption] : []
+  )
+
+  // Update selectedOptions when selectedOption prop changes
+  useEffect(() => {
+    if (selectedOption) {
+      setSelectedOptions([selectedOption]);
+    }
+  }, [selectedOption])
 
   const handleOptionClick = (option: string) => {
     if (multiSelect) {
@@ -20,6 +36,10 @@ export function QuickReplyChips({ options, multiSelect, onSelect, onMultiSelect 
         : [...selectedOptions, option]
       setSelectedOptions(newSelected)
     } else {
+      // If selectedOption is provided, don't allow selecting a different option
+      if (selectedOption && option !== selectedOption) {
+        return;
+      }
       onSelect?.(option)
     }
   }
@@ -36,17 +56,17 @@ export function QuickReplyChips({ options, multiSelect, onSelect, onMultiSelect 
         {options.map((option, index) => (
           <Button
             key={index}
-            variant={selectedOptions.includes(option) ? "default" : "outline"}
+            variant={(selectedOptions.includes(option) || selectedOption === option) ? "default" : "outline"}
             size="sm"
             className={`rounded-full text-xs transition-all duration-200 ${
-              selectedOptions.includes(option)
+              (selectedOptions.includes(option) || selectedOption === option)
                 ? "bg-blue-500 text-white transform scale-105"
                 : "hover:bg-blue-50 hover:border-blue-300"
             }`}
             onClick={() => handleOptionClick(option)}
           >
             {option}
-            {selectedOptions.includes(option) && multiSelect && <span className="ml-1">✓</span>}
+            {((selectedOptions.includes(option) && multiSelect) || (selectedOption === option)) && <span className="ml-1">✓</span>}
           </Button>
         ))}
       </div>

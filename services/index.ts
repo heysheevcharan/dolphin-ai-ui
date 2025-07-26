@@ -1,4 +1,5 @@
-const BACKEND_URL = 'http://localhost:5005';
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5005';
+
 
 const WORKFLOW_ENDPOINT = `${BACKEND_URL}/workflows`;
 
@@ -27,12 +28,12 @@ export const initiateWorkflowAPI = async (workflowName: string, data: any) => {
 
 export const resumeWorkflowAPI = async (workflowName: string, sessionId: string, data: any) => {
     try {
-        const response = await fetch(`${WORKFLOW_ENDPOINT}/${sessionId}`, {
+        const response = await fetch(`${WORKFLOW_ENDPOINT}/${workflowName}/${sessionId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ data }),
+            body: JSON.stringify(data),
         });
 
         if (!response.ok) {

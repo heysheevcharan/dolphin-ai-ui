@@ -7,9 +7,9 @@ import { BadgeNotification } from "@/components/badge-notification"
 import { ScoreWidget } from "@/components/score-widget"
 import { StreakCounter } from "@/components/streak-counter"
 import { LevelIndicator } from "@/components/level-indicator"
-import type { Message, Agent, Badge, UserProfile } from "@/types"
+import type { Message, Agent, Badge, UserProfile, TextMessage, AskQuestionMessage } from "@/types"
 import { mockConversationFlow } from "@/lib/mock-data"
-import {initiateWorkflowAPI} from "@/services";
+import {initiateWorkflowAPI, resumeWorkflowAPI} from "@/services";
 
 export default function FinanceChatApp() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -24,6 +24,81 @@ export default function FinanceChatApp() {
   })
   const [showBadge, setShowBadge] = useState<Badge | null>(null)
   const [conversationStep, setConversationStep] = useState(0)
+  const [sessionId, setSessionId] = useState<string | null>(null)
+
+  // Function to parse API messages into our Message format
+  const parseApiMessages = (apiMessages: any[]): Message[] => {
+    if (!apiMessages || !Array.isArray(apiMessages)) return [];
+
+
+    return apiMessages.map((msg, index) => {
+      try {
+        // Common properties for all message types
+        const baseMessage = {
+          id: `api-${index}`,
+          timestamp: new Date(),
+        };
+
+        // Handle text messages
+        if (msg.type === "text") {
+          const textMessage: TextMessage = {
+            ...baseMessage,
+            type: "text",
+            role: msg.role,
+            content: msg.content,
+            additional_kwargs: msg.additional_kwargs || {},
+            response_metadata: msg.response_metadata || {},
+          };
+          return textMessage;
+        }
+
+        // Handle ask_question messages
+        else if (msg.type === "ask_question") {
+          try {
+            const content = typeof msg.content === 'string' 
+              ? JSON.parse(msg.content) 
+              : msg.content;
+
+            const askQuestionMessage: AskQuestionMessage = {
+              ...baseMessage,
+              type: "ask_question",
+              role: "ai",
+              content: msg.content,
+              options: content.options || [],
+              question: content.question || "",
+            };
+            return askQuestionMessage;
+          } catch (e) {
+            console.error("Error parsing ask_question message:", e);
+            // Fallback to text message if parsing fails
+            return {
+              ...baseMessage,
+              type: "text",
+              role: "ai",
+              content: msg.content,
+            } as TextMessage;
+          }
+        }
+
+        // Default fallback
+        return {
+          ...baseMessage,
+          type: msg.type,
+          role: msg.role || "ai",
+          content: msg.content || "Message could not be displayed",
+        } as TextMessage;
+      } catch (e) {
+        console.error("Error parsing message:", e);
+        return {
+          id: `error-${index}`,
+          type: "text",
+          role: "ai",
+          content: "Error displaying message",
+          timestamp: new Date(),
+        } as TextMessage;
+      }
+    });
+  };
 
   useEffect(() => {
     // Initialize with welcome message
@@ -36,22 +111,37 @@ export default function FinanceChatApp() {
       timestamp: new Date(),
       showProgress: true,
     }
+
+    // Use the API to get messages
     initiateWorkflowAPI("onboarding", {
       content: JSON.stringify({}),
       role: "user",
     }).then((response) => {
       console.log("Workflow initiated:", {response, messages: response.response.messages})
-      // setMessages(response.response.messages)
+
+      if (response.response && response.response.messages) {
+        const parsedMessages = parseApiMessages(response.response.messages);
+        setMessages([welcomeMessage, ...parsedMessages]);
+
+        // Store session ID for future interactions
+        if (response.response.session_id) {
+          setSessionId(response.response.session_id);
+        }
+      } else {
+        setMessages([welcomeMessage]);
+        // Start mock conversation flow after a brief delay
+        setTimeout(() => {
+          startConversationFlow()
+        }, 2000)
+      }
     }).catch((error) => {
       console.error("Error initiating workflow:", error)
+      setMessages([welcomeMessage]);
+      // Start mock conversation flow after a brief delay
+      setTimeout(() => {
+        startConversationFlow()
+      }, 2000)
     })
-
-    setMessages([welcomeMessage])
-
-    // Start conversation flow after a brief delay
-    setTimeout(() => {
-      startConversationFlow()
-    }, 2000)
   }, [])
 
   const startConversationFlow = () => {
@@ -94,6 +184,8 @@ export default function FinanceChatApp() {
   }
 
   const handleUserMessage = (content: string, data?: any) => {
+
+    // Create a user message
     const userMessage: Message = {
       id: Date.now().toString(),
       type: "user",
@@ -103,12 +195,54 @@ export default function FinanceChatApp() {
     }
 
     setMessages((prev) => [...prev, userMessage])
-    setConversationStep((prev) => prev + 1)
 
-    // Continue conversation flow
-    setTimeout(() => {
-      startConversationFlow()
-    }, 500)
+    // If we have a session ID, use the API to continue the conversation
+    if (sessionId) {
+      // Show typing indicator by setting a temporary message
+      const typingMessage: TextMessage = {
+        id: `typing-${Date.now()}`,
+        type: "text",
+        role: "ai",
+        content: "...",
+        timestamp: new Date(),
+      }
+
+      setMessages((prev) => [...prev, typingMessage])
+
+      console.log({ content, sessionId })
+      // Call the API
+      resumeWorkflowAPI("onboarding", sessionId, {
+        content: content,
+        role: "user",
+      })
+        .then((response) => {
+          console.log("Workflow resumed:", response)
+
+          if (response.response && response.response.messages) {
+            const parsedMessages = parseApiMessages(response.response.messages);
+            setMessages(parsedMessages)
+          }
+        })
+        .catch((error) => {
+          console.error("Error resuming workflow:", error)
+
+          // Remove the typing indicator
+          setMessages((prev) => prev.filter(msg => msg.id !== typingMessage.id))
+
+          // Fallback to mock conversation
+          setConversationStep((prev) => prev + 1)
+          startConversationFlow()
+        })
+
+    } else {
+      // Fallback to mock conversation
+      setConversationStep((prev) => prev + 1)
+
+      // Continue conversation flow
+      setTimeout(() => {
+        startConversationFlow()
+      }, 500)
+    }
   }
 
   const handleBadgeClose = () => {
