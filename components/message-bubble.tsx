@@ -37,14 +37,20 @@ export function MessageBubble({ message, onUserMessage }: MessageBubbleProps) {
   }
 
   if (message.type === "user") {
-    const userMessage = message as UserMessage
+    let userMessage
+    try {
+      userMessage = JSON.parse(message.content).question_response as string
+    } catch (e) {
+      userMessage = message.content as string
+    }
+
     return (
       <div className="flex justify-end">
         <div className="max-w-xs lg:max-w-md">
           <div className="bg-blue-500 text-white rounded-2xl rounded-br-md px-4 py-2">
-            <p className="text-sm">{userMessage.content}</p>
+            <p className="text-sm">{userMessage}</p>
           </div>
-          <p className="text-xs text-gray-500 mt-1 text-right">{formatTimestamp(userMessage.timestamp)}</p>
+          <p className="text-xs text-gray-500 mt-1 text-right">{formatTimestamp(message.timestamp)}</p>
         </div>
       </div>
     )

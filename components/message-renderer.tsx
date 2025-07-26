@@ -50,6 +50,22 @@ export function MessageRenderer({ message, onUserMessage }: MessageRendererProps
     const messageTypeSwitch = (message: Message) => {
       switch (message.type) {
         case "text":
+          if (message.role === "user") {
+            let messageContent
+            try {
+              messageContent = JSON.parse(message.content as string).question_response
+            } catch (e) {
+              messageContent = message.content
+            }
+            if (messageContent) {
+              return (
+                  <ChatMessage role={message.role} content={messageContent} />
+              )
+            } else {
+              return null
+            }
+
+          }
           const textMessage = message as TextMessage
           return <ChatMessage role={textMessage.role} content={textMessage.content} timestamp={textMessage.timestamp} />
         case "image_urls":
@@ -79,8 +95,8 @@ export function MessageRenderer({ message, onUserMessage }: MessageRendererProps
               <div>
                 <p className="text-sm text-gray-800 leading-relaxed">{questionMessage.question}</p>
                 <div className="mt-3">
-                  <QuickReplyChips 
-                    options={questionMessage.options} 
+                  <QuickReplyChips
+                    options={questionMessage.options}
                     onSelect={handleOptionSelect}
                     selectedOption={selectedOption}
                   />
