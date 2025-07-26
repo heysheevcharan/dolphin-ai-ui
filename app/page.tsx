@@ -9,6 +9,7 @@ import { StreakCounter } from "@/components/streak-counter"
 import { LevelIndicator } from "@/components/level-indicator"
 import type { Message, Agent, Badge, UserProfile } from "@/types"
 import { mockConversationFlow } from "@/lib/mock-data"
+import {initiateWorkflowAPI} from "@/services";
 
 export default function FinanceChatApp() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -35,6 +36,16 @@ export default function FinanceChatApp() {
       timestamp: new Date(),
       showProgress: true,
     }
+    initiateWorkflowAPI("onboarding", {
+      content: JSON.stringify({}),
+      role: "user",
+    }).then((response) => {
+      console.log("Workflow initiated:", {response, messages: response.response.messages})
+      // setMessages(response.response.messages)
+    }).catch((error) => {
+      console.error("Error initiating workflow:", error)
+    })
+
     setMessages([welcomeMessage])
 
     // Start conversation flow after a brief delay
