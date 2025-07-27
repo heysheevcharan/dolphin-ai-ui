@@ -17,7 +17,9 @@ export function InputBar({ onSendMessage }: InputBarProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (message.trim()) {
-      onSendMessage(message.trim())
+      onSendMessage(JSON.stringify({
+        question_response: message.trim()
+      }))
       setMessage("")
     }
   }
