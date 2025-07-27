@@ -22,22 +22,22 @@ export function SliderInput({ label, min, max, step, defaultValue, unit = "", on
   }
 
   return (
-    <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
+    <div className="space-y-4 p-4 bg-muted rounded-lg">
       <div className="text-center">
-        <p className="text-sm font-medium text-gray-700">{label}</p>
-        <p className="text-2xl font-bold text-blue-600 mt-1">
+        <p className="text-sm font-medium text-foreground">{label}</p>
+        <p className="text-2xl font-bold text-primary mt-1">
           {unit === "%" ? `${value[0]}%` : `${unit}${value[0].toLocaleString()}`}
         </p>
       </div>
 
       <Slider value={value} onValueChange={setValue} max={max} min={min} step={step} className="w-full" />
 
-      <div className="flex justify-between text-xs text-gray-500">
+      <div className="flex justify-between text-xs text-muted-foreground">
         <span>{unit === "%" ? `${min}%` : `${unit}${min.toLocaleString()}`}</span>
         <span>{unit === "%" ? `${max}%` : `${unit}${max.toLocaleString()}`}</span>
       </div>
 
-      <Button onClick={handleSubmit} className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-full" size="sm">
+      <Button onClick={handleSubmit} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full" size="sm">
         Confirm Selection
       </Button>
     </div>

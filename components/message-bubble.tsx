@@ -47,10 +47,10 @@ export function MessageBubble({ message, onUserMessage }: MessageBubbleProps) {
     return (
       <div className="flex justify-end">
         <div className="max-w-xs lg:max-w-md">
-          <div className="bg-blue-500 text-white rounded-2xl rounded-br-md px-4 py-2">
+          <div className="bg-primary text-primary-foreground rounded-2xl rounded-br-md px-4 py-2">
             <p className="text-sm">{userMessage}</p>
           </div>
-          <p className="text-xs text-gray-500 mt-1 text-right">{formatTimestamp(message.timestamp)}</p>
+          <p className="text-xs text-muted-foreground mt-1 text-right">{formatTimestamp(message.timestamp)}</p>
         </div>
       </div>
     )
@@ -63,8 +63,8 @@ export function MessageBubble({ message, onUserMessage }: MessageBubbleProps) {
         <AgentAvatar agent={agentMessage.agent} />
 
         <div className="flex-1 max-w-xs lg:max-w-md">
-          <div className="bg-white rounded-2xl rounded-bl-md px-4 py-3 shadow-sm border border-gray-100">
-            <p className="text-sm text-gray-800 leading-relaxed">{agentMessage.content}</p>
+          <div className="bg-card rounded-2xl rounded-bl-md px-4 py-3 shadow-sm border border-border">
+            <p className="text-sm text-foreground leading-relaxed">{agentMessage.content}</p>
 
             {/* Quick Replies */}
             {agentMessage.quickReplies && (
@@ -102,7 +102,7 @@ export function MessageBubble({ message, onUserMessage }: MessageBubbleProps) {
             )}
           </div>
 
-          <p className="text-xs text-gray-500 mt-1">{formatTimestamp(agentMessage.timestamp)}</p>
+          <p className="text-xs text-muted-foreground mt-1">{formatTimestamp(agentMessage.timestamp)}</p>
         </div>
       </div>
     )

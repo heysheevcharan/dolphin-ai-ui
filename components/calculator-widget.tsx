@@ -57,12 +57,12 @@ export function CalculatorWidget({ type }: CalculatorWidgetProps) {
   const labels = getLabels()
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-4 border border-blue-100">
-      <h3 className="text-sm font-semibold text-gray-800 mb-3 text-center">{getTitle()}</h3>
+    <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg p-4 border border-primary/20">
+      <h3 className="text-sm font-semibold text-foreground mb-3 text-center">{getTitle()}</h3>
 
       <div className="space-y-3">
         <div>
-          <label className="text-xs text-gray-600 block mb-1">{labels.p}</label>
+          <label className="text-xs text-muted-foreground block mb-1">{labels.p}</label>
           <Input
             type="number"
             value={principal}
@@ -73,7 +73,7 @@ export function CalculatorWidget({ type }: CalculatorWidgetProps) {
         </div>
 
         <div>
-          <label className="text-xs text-gray-600 block mb-1">{labels.r}</label>
+          <label className="text-xs text-muted-foreground block mb-1">{labels.r}</label>
           <Input
             type="number"
             value={rate}
@@ -84,7 +84,7 @@ export function CalculatorWidget({ type }: CalculatorWidgetProps) {
         </div>
 
         <div>
-          <label className="text-xs text-gray-600 block mb-1">{labels.t}</label>
+          <label className="text-xs text-muted-foreground block mb-1">{labels.t}</label>
           <Input
             type="number"
             value={time}
@@ -96,16 +96,16 @@ export function CalculatorWidget({ type }: CalculatorWidgetProps) {
 
         <Button
           onClick={calculate}
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
           size="sm"
         >
           Calculate
         </Button>
 
         {result && (
-          <div className="bg-white rounded-lg p-3 text-center border border-green-200">
-            <p className="text-xs text-gray-600">{type === "sip" ? "Future Value" : "Final Amount"}</p>
-            <p className="text-lg font-bold text-green-600">
+          <div className="bg-card rounded-lg p-3 text-center border border-secondary/20">
+            <p className="text-xs text-muted-foreground">{type === "sip" ? "Future Value" : "Final Amount"}</p>
+            <p className="text-lg font-bold text-secondary">
               ₹{result.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
             </p>
           </div>

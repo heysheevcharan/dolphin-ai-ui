@@ -60,8 +60,8 @@ export function QuickReplyChips({
             size="sm"
             className={`rounded-full text-xs transition-all duration-200 ${
               (selectedOptions.includes(option) || selectedOption === option)
-                ? "bg-blue-500 text-white transform scale-105"
-                : "hover:bg-blue-50 hover:border-blue-300"
+                ? "bg-primary text-primary-foreground transform scale-105"
+                : "hover:bg-primary/10 hover:border-primary/30"
             }`}
             onClick={() => handleOptionClick(option)}
           >
@@ -74,7 +74,7 @@ export function QuickReplyChips({
       {multiSelect && selectedOptions.length > 0 && (
         <Button
           onClick={handleSubmitMultiSelect}
-          className="w-full bg-green-500 hover:bg-green-600 text-white rounded-full"
+          className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full"
           size="sm"
         >
           Continue with {selectedOptions.length} selected

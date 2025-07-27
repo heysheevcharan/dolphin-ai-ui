@@ -12,8 +12,8 @@ interface SpendingChartProps {
 
 export function SpendingChart({ data }: SpendingChartProps) {
   return (
-    <div className="bg-gray-50 rounded-lg p-4">
-      <h3 className="text-sm font-medium text-gray-700 mb-3 text-center">Your Spending Breakdown</h3>
+    <div className="bg-muted rounded-lg p-4">
+      <h3 className="text-sm font-medium text-foreground mb-3 text-center">Your Spending Breakdown</h3>
       <div className="h-48">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -26,7 +26,7 @@ export function SpendingChart({ data }: SpendingChartProps) {
               verticalAlign="bottom"
               height={36}
               formatter={(value, entry) => (
-                <span className="text-xs text-gray-600">
+                <span className="text-xs text-muted-foreground">
                   {value}: ₹{entry.payload?.value?.toLocaleString()}
                 </span>
               )}

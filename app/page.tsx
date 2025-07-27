@@ -248,17 +248,17 @@ export default function FinanceChatApp() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 max-w-md mx-auto relative">
+    <div className="flex flex-col h-screen bg-background max-w-md mx-auto relative">
       {/* Header with gamification elements */}
-      <div className="bg-white border-b border-gray-200 p-4 space-y-3">
+      <div className="bg-card border-b border-border p-4 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 19c9ab rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-bold">Fi</span>
             </div>
             <div>
-              <h1 className="font-semibold text-gray-900">DolphinAI</h1>
-              <p className="text-xs text-gray-500">Your AI Finance Team</p>
+              <h1 className="font-semibold text-foreground">DolphinAI</h1>
+              <p className="text-xs text-muted-foreground">Your AI Finance Team</p>
             </div>
           </div>
           <div className="flex items-center space-x-2">

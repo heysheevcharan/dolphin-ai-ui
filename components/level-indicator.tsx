@@ -8,13 +8,13 @@ export function LevelIndicator({ level }: LevelIndicatorProps) {
   const getLevelColor = (level: string) => {
     switch (level) {
       case "Beginner":
-        return "bg-green-100 text-green-600"
+        return "bg-primary/10 text-primary"
       case "Intermediate":
-        return "bg-blue-100 text-blue-600"
+        return "bg-secondary/10 text-secondary"
       case "Expert":
-        return "bg-purple-100 text-purple-600"
+        return "bg-accent/10 text-accent"
       default:
-        return "bg-gray-100 text-gray-600"
+        return "bg-muted text-muted-foreground"
     }
   }
 

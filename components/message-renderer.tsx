@@ -23,11 +23,11 @@ const ChatMessage = ({ role, content, children, timestamp }: { role: "user" | "a
         {/*  </div>*/}
         {/*)}*/}
         <div>
-          <div className={`${isUser ? "bg-blue-500 text-white" : "bg-white text-gray-800"} rounded-2xl ${isUser ? "rounded-br-md" : "rounded-bl-md"} px-4 py-2 ${!isUser ? "shadow-sm border border-gray-100" : ""}`}>
+          <div className={`${isUser ? "bg-primary text-primary-foreground" : "bg-card text-foreground"} rounded-2xl ${isUser ? "rounded-br-md" : "rounded-bl-md"} px-4 py-2 ${!isUser ? "shadow-sm border border-border" : ""}`}>
             {content && typeof content === 'string' && <p className="text-sm">{content}</p>}
             {children}
           </div>
-          <p className={`text-xs text-gray-500 mt-1 ${isUser ? "text-right" : ""}`}>
+          <p className={`text-xs text-muted-foreground mt-1 ${isUser ? "text-right" : ""}`}>
             {timestamp && formatTimestamp(timestamp)}
           </p>
         </div>
@@ -93,7 +93,7 @@ export function MessageRenderer({ message, onUserMessage }: MessageRendererProps
           return (
             <ChatMessage role="ai" timestamp={questionMessage.timestamp}>
               <div>
-                <p className="text-sm text-gray-800 leading-relaxed">{questionMessage.question}</p>
+                <p className="text-sm text-foreground leading-relaxed">{questionMessage.question}</p>
                 <div className="mt-3">
                   <QuickReplyChips
                     options={questionMessage.options}

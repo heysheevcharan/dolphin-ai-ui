@@ -25,9 +25,9 @@ export function InputBar({ onSendMessage }: InputBarProps) {
   }
 
   return (
-    <div className="bg-white border-t border-gray-200 p-4">
+    <div className="bg-card border-t border-border p-4">
       <form onSubmit={handleSubmit} className="flex items-center space-x-2">
-        <Button type="button" variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
+        <Button type="button" variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
           <Paperclip className="w-5 h-5" />
         </Button>
 
@@ -36,13 +36,13 @@ export function InputBar({ onSendMessage }: InputBarProps) {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message..."
-            className="rounded-full pr-12 border-gray-300 focus:border-blue-500"
+            className="rounded-full pr-12 border-input focus:border-primary focus:ring-primary"
           />
           <Button
             type="button"
             variant="ghost"
             size="sm"
-            className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+            className="absolute right-1 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
           >
             <Mic className="w-4 h-4" />
           </Button>
@@ -51,7 +51,7 @@ export function InputBar({ onSendMessage }: InputBarProps) {
         <Button
           type="submit"
           size="sm"
-          className="rounded-full bg-blue-500 hover:bg-blue-600 text-white p-2"
+          className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground p-2"
           disabled={!message.trim()}
         >
           <Send className="w-4 h-4" />

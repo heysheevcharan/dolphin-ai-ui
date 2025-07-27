@@ -35,7 +35,7 @@ export function ChatContainer({ messages, currentAgent, onUserMessage }: ChatCon
   return (
     <div className="flex flex-col flex-1 overflow-hidden">
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-primary/5">
         <div>
           {messages.map((message) => (
             <MessageBubble key={message.id} message={message} onUserMessage={onUserMessage} />

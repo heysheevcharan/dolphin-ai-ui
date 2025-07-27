@@ -10,11 +10,11 @@ export function AgentAvatar({ agent }: AgentAvatarProps) {
   const getAgentInfo = (agent: Agent) => {
     switch (agent) {
       case "dolphin":
-        return { emoji: "🐬", bg: "bg-blue-100", text: "text-blue-600" }
+        return { emoji: "🐬", bg: "bg-primary/10", text: "text-primary" }
       case "elephant":
-        return { emoji: "🐘", bg: "bg-gray-100", text: "text-gray-600" }
+        return { emoji: "🐘", bg: "bg-secondary/10", text: "text-secondary" }
       case "cheetah":
-        return { emoji: "🐆", bg: "bg-yellow-100", text: "text-yellow-600" }
+        return { emoji: "🐆", bg: "bg-accent/10", text: "text-accent" }
     }
   }
 
