@@ -1,30 +1,31 @@
 # Multi-agent finance system
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
-
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/sheevstartup-gmailcoms-projects/v0-multi-agent-finance-system)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/peFX3C7hyKR)
-
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+A modern finance system built with a multi-agent architecture, designed to provide advanced financial analysis and management tools.
 
-## Deployment
+## Related Repositories
 
-Your project is live at:
+- **Backend Repository:** [https://github.com/samirpatil2000/dolphin-ai](https://github.com/samirpatil2000/dolphin-ai)
+- **Fi Money MCP Repository:** [https://github.com/samirpatil2000/fi-mcp-dev](https://github.com/samirpatil2000/fi-mcp-dev)
 
-**[https://vercel.com/sheevstartup-gmailcoms-projects/v0-multi-agent-finance-system](https://vercel.com/sheevstartup-gmailcoms-projects/v0-multi-agent-finance-system)**
+## Features
 
-## Build your app
+- Financial data analysis and visualization
+- Multi-agent system for automated financial tasks
+- Interactive dashboard for monitoring financial metrics
+- Secure authentication and data handling
 
-Continue building your app on:
+## Technology Stack
 
-**[https://v0.dev/chat/projects/peFX3C7hyKR](https://v0.dev/chat/projects/peFX3C7hyKR)**
+- Built with Next.js and React
+- TypeScript for type-safe code
+- Tailwind CSS for styling
+- Various Radix UI components for accessible UI elements
 
-## How It Works
+## Getting Started
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+1. Clone the repository
+2. Install dependencies with `pnpm install`
+3. Run the development server with `pnpm dev`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
