@@ -17,7 +17,7 @@
     --card-foreground: 0 0% 11%; /* Charcoal Gray: #1C1C1C */
     --popover: 0 0% 100%; /* White: #FFFFFF */
     --popover-foreground: 0 0% 11%; /* Charcoal Gray: #1C1C1C */
-    --primary: 134 41% 31%; /* Forest Green: #2E6F40 */
+    --primary: 168 77% 44%; /* Teal: #19c9ab */
     --primary-foreground: 0 0% 100%; /* White: #FFFFFF */
     --secondary: 176 100% 37%; /* Muted Teal: #00BFB3 */
     --secondary-foreground: 0 0% 100%; /* White: #FFFFFF */
@@ -29,8 +29,8 @@
     --destructive-foreground: 0 0% 100%; /* White: #FFFFFF */
     --border: 0 0% 88%; /* Light Gray: #E0E0E0 */
     --input: 0 0% 88%; /* Light Gray: #E0E0E0 */
-    --ring: 134 41% 31%; /* Forest Green: #2E6F40 */
-    --chart-1: 134 41% 31%; /* Forest Green: #2E6F40 */
+    --ring: 168 77% 44%; /* Teal: #19c9ab */
+    --chart-1: 168 77% 44%; /* Teal: #19c9ab */
     --chart-2: 176 100% 37%; /* Muted Teal: #00BFB3 */
     --chart-3: 46 59% 52%; /* Gold/Yellowish: #D4AF37 */
     --chart-4: 0 0% 43%; /* Medium Gray: #6E6E6E */
@@ -38,12 +38,12 @@
     --radius: 0.5rem;
     --sidebar-background: 0 0% 100%; /* White: #FFFFFF */
     --sidebar-foreground: 0 0% 11%; /* Charcoal Gray: #1C1C1C */
-    --sidebar-primary: 134 41% 31%; /* Forest Green: #2E6F40 */
+    --sidebar-primary: 168 77% 44%; /* Teal: #19c9ab */
     --sidebar-primary-foreground: 0 0% 100%; /* White: #FFFFFF */
     --sidebar-accent: 46 59% 52%; /* Gold/Yellowish: #D4AF37 */
     --sidebar-accent-foreground: 0 0% 11%; /* Charcoal Gray: #1C1C1C */
     --sidebar-border: 0 0% 88%; /* Light Gray: #E0E0E0 */
-    --sidebar-ring: 134 41% 31%; /* Forest Green: #2E6F40 */
+    --sidebar-ring: 168 77% 44%; /* Teal: #19c9ab */
   }
   .dark {
     /* FiMoney Theme - Dark Mode */
@@ -53,7 +53,7 @@
     --card-foreground: 0 0% 100%; /* White: #FFFFFF */
     --popover: 0 0% 15%; /* Slightly lighter than background */
     --popover-foreground: 0 0% 100%; /* White: #FFFFFF */
-    --primary: 134 41% 25%; /* Darker Forest Green: #255A33 */
+    --primary: 168 77% 35%; /* Darker Teal: #14a08a */
     --primary-foreground: 0 0% 100%; /* White: #FFFFFF */
     --secondary: 176 100% 30%; /* Darker Muted Teal: #009990 */
     --secondary-foreground: 0 0% 100%; /* White: #FFFFFF */
@@ -65,20 +65,20 @@
     --destructive-foreground: 0 0% 100%; /* White: #FFFFFF */
     --border: 0 0% 25%; /* Darker Light Gray */
     --input: 0 0% 25%; /* Darker Light Gray */
-    --ring: 134 41% 25%; /* Darker Forest Green: #255A33 */
-    --chart-1: 134 41% 25%; /* Darker Forest Green: #255A33 */
+    --ring: 168 77% 35%; /* Darker Teal: #14a08a */
+    --chart-1: 168 77% 35%; /* Darker Teal: #14a08a */
     --chart-2: 176 100% 30%; /* Darker Muted Teal: #009990 */
     --chart-3: 46 59% 45%; /* Darker Gold/Yellowish: #B5942F */
     --chart-4: 0 0% 70%; /* Lighter Medium Gray */
     --chart-5: 0 0% 25%; /* Darker Light Gray */
     --sidebar-background: 0 0% 15%; /* Slightly lighter than background */
     --sidebar-foreground: 0 0% 100%; /* White: #FFFFFF */
-    --sidebar-primary: 134 41% 25%; /* Darker Forest Green: #255A33 */
+    --sidebar-primary: 168 77% 35%; /* Darker Teal: #14a08a */
     --sidebar-primary-foreground: 0 0% 100%; /* White: #FFFFFF */
     --sidebar-accent: 46 59% 45%; /* Darker Gold/Yellowish: #B5942F */
     --sidebar-accent-foreground: 0 0% 100%; /* White: #FFFFFF */
     --sidebar-border: 0 0% 25%; /* Darker Light Gray */
-    --sidebar-ring: 134 41% 25%; /* Darker Forest Green: #255A33 */
+    --sidebar-ring: 168 77% 35%; /* Darker Teal: #14a08a */
   }
 }
 
