@@ -17,11 +17,11 @@ const ChatMessage = ({ role, content, children, timestamp }: { role: "user" | "a
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
       <div className={`max-w-xs lg:max-w-md ${isUser ? "" : "flex items-start space-x-3"}`}>
-        {!isUser && (
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-            <span className="text-white text-sm font-bold">AI</span>
-          </div>
-        )}
+        {/*{!isUser && (*/}
+        {/*  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">*/}
+        {/*    <span className="text-white text-sm font-bold">AI</span>*/}
+        {/*  </div>*/}
+        {/*)}*/}
         <div>
           <div className={`${isUser ? "bg-blue-500 text-white" : "bg-white text-gray-800"} rounded-2xl ${isUser ? "rounded-br-md" : "rounded-bl-md"} px-4 py-2 ${!isUser ? "shadow-sm border border-gray-100" : ""}`}>
             {content && typeof content === 'string' && <p className="text-sm">{content}</p>}

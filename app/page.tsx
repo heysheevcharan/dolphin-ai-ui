@@ -209,7 +209,6 @@ export default function FinanceChatApp() {
 
       setMessages((prev) => [...prev, typingMessage])
 
-      console.log({ content, sessionId })
       // Call the API
       resumeWorkflowAPI("onboarding", sessionId, {
         content: content,
