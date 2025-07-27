@@ -1,4 +1,4 @@
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5005';
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://flask-app-backend-672122151468.asia-south1.run.app';
 
 
 const WORKFLOW_ENDPOINT = `${BACKEND_URL}/workflows`;
